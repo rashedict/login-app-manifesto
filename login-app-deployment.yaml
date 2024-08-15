@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: login-app-deployment
+spec:
+  replicas: 2  # Number of replicas (pods) for your application
+  selector:
+    matchLabels:
+      app: login-app  # Matches the label in the pod template
+  template:
+    metadata:
+      labels:
+        app: login-app  # Label for the pod
+    spec:
+      containers:
+      - name: login-app
+        image: rashed271202/login-app:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: login-app-service
+spec:
+  type: LoadBalancer  # This service type exposes the application externally
+  selector:
+    app: login-app  # Matches the label in the deployment
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
