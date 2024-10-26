@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: login-app
-        image: rashed271202/login-app:v10.0
+        image: rashed271202/login-app:v11.0
 ---
 apiVersion: v1
 kind: Service
